@@ -23,9 +23,9 @@ const getVideogameDetailHandler = async (req, res) => {
 };
 
 const createVideogameHandler = async (req, res) => {
-  const { name, description, platforms, image, released, rating } = req.body;
+  const { name, description, platforms, image, released, rating, genreIds } = req.body;
   try {
-    const newVideogame = await createVideogame(name, description, platforms, image, released, rating);
+    const newVideogame = await createVideogame(name, description, platforms, image, released, rating, genreIds);
     res.status(201).json(newVideogame);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -34,11 +34,12 @@ const createVideogameHandler = async (req, res) => {
 // example body:
 // {
 //   "name":"Stumble Guys",
-//   "description":"Battle royale party game",
+//   "description":"Race against other players in online multiplayer, dashing through chaotic obstacle courses. Run, fall, rise, run again!",
 //   "platforms":["iOS", "Android"],
 //   "image":"https://cdn.cloudflare.steamstatic.com/steam/apps/1677740/capsule_616x353.jpg?t=1668177990",
 //   "released":"2021-02-12",
-//   "rating":4.12
+//   "rating":4.12,
+//   "genreIds":[59, 40, 51]
 // }
 
 module.exports = {
