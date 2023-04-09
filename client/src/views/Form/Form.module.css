@@ -35,14 +35,14 @@
   margin-top: 1rem;
   border-radius: 0.25rem;
   border: none;
-  background-color: #007bff;
-  color: white;
+  background-color: #a91ee9;
+  color: #fff;
   font-size: 1rem;
   cursor: pointer;
 }
 
 .createVideogameForm button:hover {
-  background-color: #0069d9;
+  background-color: #7e18c2;
 }
 
 .error {

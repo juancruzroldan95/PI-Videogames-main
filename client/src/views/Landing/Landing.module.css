@@ -1,0 +1,44 @@
+.landing {
+  height: 100vh;
+  width: 100%;
+  background-image: url("https://i.pinimg.com/originals/be/cd/f0/becdf045c365c9cfd71624dd270e3e7d.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing h1 {
+  font-size: 3rem;
+  color: #fff;
+  text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.landing p {
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+}
+
+.landing button {
+  display: inline-block;
+  background-color: #a91ee9;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.landing button:hover {
+  background-color: #7e18c2;
+}

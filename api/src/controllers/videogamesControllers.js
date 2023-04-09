@@ -4,7 +4,6 @@ require('dotenv').config();
 const { API_KEY } = process.env;
 const { Sequelize } = require('sequelize');
 
-
 const cleanArray = (arr) => // for route /videogames
   arr.map((elem) => {
     return {

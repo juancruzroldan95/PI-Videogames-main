@@ -20,9 +20,9 @@
   font-size: 18px;
   font-weight: 500;
   margin: 0 10px;
-  transition: color .25s;
+  transition: color 0.3s;
 }
 
 .navbarLink:hover {
-  color: #007bff;
+  color: #7e18c2;
 }
