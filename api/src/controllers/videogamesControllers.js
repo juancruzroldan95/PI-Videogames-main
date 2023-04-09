@@ -48,7 +48,8 @@ const getVideogameById = async (id, source) => {
       include: {
         model: Genres,
         attributes: ['id', 'name'],
-        through: { attributes: [] } // Exclude the join table attributes from the result
+        through: { attributes: [] }, // Exclude the join table attributes from the result
+        as: 'genres'
       }
     });
   }
@@ -61,7 +62,8 @@ const getAllVideogames = async () => {
     include: {
       model: Genres,
       attributes: ['id', 'name'],
-      through: { attributes: [] }
+      through: { attributes: [] },
+      as: 'genres'
     }
   });
   let response = (await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)).data;
@@ -81,7 +83,8 @@ const searchVideogameByName = async (name) => {
     include: {
       model: Genres,
       attributes: ['id', 'name'],
-      through: { attributes: [] }
+      through: { attributes: [] },
+      as: 'genres'
     },
     where: {
       name: {

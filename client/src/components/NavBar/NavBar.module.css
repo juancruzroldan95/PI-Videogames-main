@@ -1,7 +1,28 @@
-.mainContainer {
+.navbar {
   display: flex;
-  flex-direction: row;
   justify-content: space-around;
-  border-radius: 10px;
-  border: 1px solid black;
+  align-items: center;
+  background-color: #ffffff;
+  color: white;
+  border-bottom: 1px solid rgb(208, 208, 208);
+  padding: 10px;
+}
+
+.navbarLink {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0 10px;
+  transition: color .25s;
+}
+
+.navbarLink:hover {
+  color: #007bff;
 }

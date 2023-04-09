@@ -33,7 +33,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Videogames, Genres } = sequelize.models;
 
 // Aca vendrian las relaciones
-Videogames.belongsToMany(Genres, { through: "GenresVideogames" });
+Videogames.belongsToMany(Genres, { through: "GenresVideogames", as :"genres" });
 Genres.belongsToMany(Videogames, { through: "GenresVideogames" });
 
 // Movie.belongsToMany(Actor, { through: 'ActorMovies' });
