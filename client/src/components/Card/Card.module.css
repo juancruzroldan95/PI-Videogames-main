@@ -23,6 +23,16 @@
   margin-bottom: 10px;
 }
 
+.videogameCardLink {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s;
+}
+
+.videogameCardLink:hover {
+  color: #7e18c2;
+}
+
 .videogameCard ul {
   margin: 0;
   padding: 0;

@@ -1,4 +1,4 @@
-import { GET_VIDEOGAMES, GET_VIDEOGAME_DETAIL, GET_GENRES } from './types'
+import { GET_VIDEOGAMES, GET_GENRES } from './types'
 
 const initialState = {
   videogames: [],

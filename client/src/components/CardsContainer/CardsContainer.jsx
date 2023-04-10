@@ -9,7 +9,8 @@ const CardsContainer = () => {
   return (
     <div className={styles.container}>
       {videogames.map((videogame) => (
-        <Card key={videogame.id}
+        <Card
+          key={videogame.id}
           id={videogame.id}
           name={videogame.name}
           image={videogame.image}
