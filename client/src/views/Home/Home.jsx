@@ -1,20 +1,32 @@
 import { React, useEffect } from 'react'
-import CardsContainer from '../../components/CardsContainer/CardsContainer'
 import { useDispatch } from 'react-redux'
-import { getGenres, getVideogames } from '../../redux/actions'
+import { getGenres, getAllVideogames } from '../../redux/actions'
+import CardsContainer from '../../components/CardsContainer/CardsContainer'
+import Sort from '../../components/Sort/Sort'
+import Filter from '../../components/Filter/Filter'
+import styles from './Home.module.css'
 
 const Home = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
-    dispatch(getVideogames());
+    dispatch(getAllVideogames());
   }, [dispatch]);
   useEffect(() => {
     dispatch(getGenres());
   }, [dispatch]);
 
+  
+
   return (
-    <div>
-      <CardsContainer />
+    <div className={styles.home}>
+      <div className={styles.filterSortContainer}>
+        <Filter />
+        <Sort />
+      </div>
+      <div>
+        <CardsContainer />
+      </div>
     </div>
   )
 }

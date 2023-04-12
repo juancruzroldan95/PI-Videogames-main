@@ -11,6 +11,7 @@ const cleanArray = (arr) => // for route /videogames
       name: elem.name,
       image: elem.background_image,
       created: false,
+      rating: elem.rating,
       genres: elem.genres.map((genre) => { return { id: genre.id, name: genre.name }}),
     };
   });
@@ -57,7 +58,7 @@ const getVideogameById = async (id, source) => {
 
 const getAllVideogames = async () => {
   const dbVideogames = await Videogames.findAll({
-    attributes: ['id', 'name', 'image', 'created'],
+    attributes: ['id', 'name', 'image', 'created', 'rating'],
     include: {
       model: Genres,
       attributes: ['id', 'name'],
@@ -78,7 +79,7 @@ const getAllVideogames = async () => {
 const searchVideogameByName = async (name) => {
   const Op = Sequelize.Op;
   const dbVideogames = await Videogames.findAll({
-    attributes: ['id', 'name', 'image', 'created'],
+    attributes: ['id', 'name', 'image', 'created', 'rating'],
     include: {
       model: Genres,
       attributes: ['id', 'name'],
@@ -91,14 +92,18 @@ const searchVideogameByName = async (name) => {
       }
     }
   });
-  const response = (await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)).data;
-  const apiVideogames = cleanArray(response.results);
+  let response = (await axios.get(`https://api.rawg.io/api/games?key=${API_KEY}`)).data;
+  let apiVideogamesResults = response.results; // Array
+  for (let i = 0; i < 4; i++) { // Only 100 videogames
+    response = (await axios.get(response.next)).data;
+    apiVideogamesResults = apiVideogamesResults.concat(response.results);
+  }
+  const apiVideogames = cleanArray(apiVideogamesResults);
   const filteredApiVideogames = apiVideogames.filter((videogame) => {
     return videogame.name.toLowerCase().includes(name.toLowerCase());
   }).slice(0, 15);
   const videogames = [...dbVideogames, ...filteredApiVideogames];
-  if (videogames.length === 0) return { error: "No videogames with that search"};
-  else return videogames;
+  return videogames;
 };
 
 

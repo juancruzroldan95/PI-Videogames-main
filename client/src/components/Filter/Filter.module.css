@@ -1,0 +1,22 @@
+.filterSelect {
+  background-color: #f2f2f2;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 12px;
+}
+
+.selectedFilter {
+  margin-right: 5px;
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #dfb9ff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #3e1655;
+  display: inline-block;
+  width: auto;
+}

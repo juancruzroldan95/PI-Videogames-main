@@ -7,16 +7,22 @@ const CardsContainer = () => {
   const videogames = useSelector(state => state.videogames);
 
   return (
-    <div className={styles.container}>
-      {videogames.map((videogame) => (
-        <Card
-          key={videogame.id}
-          id={videogame.id}
-          name={videogame.name}
-          image={videogame.image}
-          genres={videogame.genres}
-        />
-      ))}
+    <div>
+      { videogames.length ? (
+        <div className={styles.container}>
+          {videogames.map((videogame) => (
+            <Card
+              key={videogame.id}
+              id={videogame.id}
+              name={videogame.name}
+              image={videogame.image}
+              genres={videogame.genres}
+            />
+          ))}
+        </div>
+      ) : (
+        <p>Loading video games...</p>
+      )}
     </div>
   );
 };

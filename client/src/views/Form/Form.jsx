@@ -1,11 +1,13 @@
 import { React, useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import { getGenres } from '../../redux/actions'
 import styles from './Form.module.css'
 
 const Form = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
   useEffect(() => { dispatch(getGenres()) }, [dispatch]);
 
   const [form, setForm] = useState({
@@ -62,17 +64,10 @@ const Form = () => {
     };
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    axios.post('http://localhost:3001/videogames', form)
-      .then(response => {
-        console.log('Success:', response.data);
-        // Go to the videogame detail
-      })
-      .catch(error => {
-        console.error('Error:', error.response.data);
-        // Handle the error
-      });
+    const response = await axios.post("http://localhost:3001/videogames", form);
+    history.push(`detail/${response.data.id}`);
   };
 
   return (
@@ -83,15 +78,15 @@ const Form = () => {
         </div>
         <div>
           <label htmlFor="name">Name: </label>
-          <input type="text" name="name" value={form.name} onChange={handleInputChange} required/>
+          <input type="text" name="name" value={form.name} onChange={handleInputChange} />
         </div>
         <div>
           <label htmlFor="description">Description: </label>
-          <textarea name="description" value={form.description} onChange={handleInputChange} required/>
+          <textarea name="description" value={form.description} onChange={handleInputChange} />
         </div>
         <div>
           <label htmlFor="platforms">Platforms: (you can select more than one)</label>
-          <select multiple name="platforms" value={form.platforms} onChange={handleInputChange} required>
+          <select multiple name="platforms" value={form.platforms} onChange={handleInputChange} >
             {platforms.map(platform => (
               <option key={platform} value={platform}>{platform}</option> 
             ))}
@@ -99,20 +94,20 @@ const Form = () => {
         </div>
         <div>
           <label htmlFor="image">URL image: </label>
-          <input type="text" name="image" value={form.image} onChange={handleInputChange} required/>
+          <input type="text" name="image" value={form.image} onChange={handleInputChange} />
           {errors.image && <p className={styles.error}>{errors.image}</p>}
         </div>
         <div>
           <label htmlFor="released">Release date: </label>
-          <input type="date" name="released" value={form.released} onChange={handleInputChange} required/>
+          <input type="date" name="released" value={form.released} onChange={handleInputChange} />
         </div>
         <div>
           <label htmlFor="rating">Rating: </label>
-          <input type="number" name="rating" min="1" max="5" value={form.rating} onChange={handleInputChange} required/>
+          <input type="number" name="rating" min="1" max="5" value={form.rating} onChange={handleInputChange} />
         </div>
         <div>
           <label htmlFor="genreIds">Genres: (you can select more than one)</label>
-          <select multiple name="genreIds" value={form.genreIds} onChange={handleInputChange} required>
+          <select multiple name="genreIds" value={form.genreIds} onChange={handleInputChange} >
             {genres.map(genre => (
               <option key={genre.id} value={genre.id}>{genre.name}</option>
             ))}
